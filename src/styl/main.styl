@@ -1,0 +1,88 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900)
+//@import url(http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css)
+
+
+// http://schempy.com/2015/04/03/responsive_layout_with_stylus_jeet_and_rupture/
+@import "rupture"
+@import "nib"
+@import "../../node_modules/iconfonts/stylesheets/ionicons.styl"
+
+// import my components
+@import 'components/_component'
+
+// ionfonts
+ion-font()
+
+// some functions
+step($start, $steps, $multiplier = $start, $unit="none")
+	for i in (1...$steps)
+		$start = $start*$multiplier
+	if $unit != "none"
+		unit($start, $unit)
+	else 
+		$start
+		
+// lost-initial setup
+@lost gutter 0px
+@lost cycle auto
+
+
+//some helper functions
+$px = (1 / $base-font-size) rem
+
+// golden ratio stuff
+$phi = 1.618
+$golden_major = 0.618
+$golden_minor = 0.382
+
+// basic variable setup
+$c_black = #555
+$c_white = #eee
+$c_footer = #415462
+
+$base-font-size = 16 
+
+* 
+	margin 0
+	padding 0
+	box-sizing border-box
+	
+iframe 
+	border 0
+
+html
+	font-size: 100%
+	+below(576px)
+		font-size 14px 
+	
+body
+	font-size 100% // text defaults 12px
+	font-family 'Roboto', sans-serif
+	font-smoothing: antialiased !important
+	color hsl(0, 0%, 93%)
+	height 100vh
+	color $c_black
+	//line-height $phi
+	font-weight: 500
+	+below(576px)
+		text-align center
+
+a 
+	color $c_black
+	text-decoration none
+
+
+.Page__wrapper-960
+	max-width 960*$px
+	margin 0 auto 
+	padding 0 1rem
+	+below(576px)
+		padding 0 $golden_minor*1rem
+
+.Grid__with-lost-and-rupture
+	lost-column 1/2
+	+below(768px)
+		lost-column 1/2
+	+below(576px)
+		lost-column 1/1
+

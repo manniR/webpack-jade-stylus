@@ -1,0 +1,29 @@
+mixin Member (name, description, email, phone, url, member_image)
+	.Member.Grid__item-member
+		//- - var image = 'default-image'
+		//- if member_image
+		//- - image = member_image
+		//- .vcard.Member__wrapper(class="Member__"+image) 
+		.vcard.Member__wrapper(class="Member__"+image) 
+			h2.Member__name.fn #{name}
+			if description
+				p.Member__description #{description}
+			//- script.
+			//- 	var mailname = email.match(/\w.+?(?=@)/g);
+			//- 	mailname = 'HELLO';
+			//- p= email.match(/\w.+?(?=@)/g)
+			//- email.split("@")[1]
+			if email == 'Hund'
+				span.Hund #{email}
+			else
+				span
+					a.Member__email.email(href="mailto:#{email}")= email.replace("@", "(at)")
+			//span.Member__email.email #{email} 
+			if phone
+				span.Member__phone.tel #{phone}
+			if url
+				span
+					a.Member__url.url(href="http://www.#{url}") #{url}
+		//- img(src="img/pix.gif")
+
+

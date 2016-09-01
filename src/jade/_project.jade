@@ -1,0 +1,33 @@
+mixin Project (project)
+	- var feature = ''
+	if project.feature
+		- feature = 'Project__featured'
+	.Project.Masonry__grid-item.Masonry__grid-item--with-shadow(class="#{feature}")
+		.Project__wrapper
+			.Project__image
+				- var image = project.image
+				if image
+					img.Project__image--ov(src="img/#{image.src}" alt="#{image.alt}")
+				- var movie = project.movie
+				if movie
+					- var aspect = 'widescreen'
+					if movie.aspect
+						- aspect = movie.aspect
+					figure.Vimeo__wrapper(class="Vimeo__size-#{aspect}")
+						iframe(src="#{movie.src}" webkitallowfullscreen mozallowfullscreen allowfullscreen)
+			.Project__details
+				if project.creators
+					h4.Project__creators
+						each creator, index in project.creators
+							if creator.url
+								a(href="http://www.#{creator.url}") #{creator.name}#{index < project.creators.length-1 ? ', ' : ''}
+							else 
+								| #{creator.name}#{index < project.creators.length-1 ? ', ' : ''}
+
+				h3.Project__title #{project.title}
+				p.Project__description #{project.description}
+				//- if project.url
+				//- 	span.Project__url.url #{project.url}
+
+			//- img(src="img/pix.gif")
+

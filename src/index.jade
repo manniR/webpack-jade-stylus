@@ -1,0 +1,33 @@
+include ./jade/_component
+include ./jade/_project
+doctype html
+html(class='no-js')
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		title site-title
+		meta(name='viewport', content='width=device-width,initial-scale=1')
+	body
+		main.Page__wrapper-960
+			header
+				h1 LOGO
+				p 
+					span Loerm 
+					| lorem ...
+
+		
+			section.Component
+				+Component('Component-title', 'Component-description', 'component@componentn.cc' ,'','component.cc')
+			
+
+			h2 Headline
+
+			section.Projects.Masonry__grid
+				.grid-sizer
+				+Project({ creators: [{name:'creator-name', url:'creator.cc'}], title: 'Project-One', description: 'Project-One Description ', image:{ src:'Project-One.png', alt:'Project-One' }}) 
+
+
+		footer	
+			p.Copyright ©2016 
+
+		
